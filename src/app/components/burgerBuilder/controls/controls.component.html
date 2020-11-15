@@ -15,22 +15,22 @@
           (click)="removeIngredient(ingredient)"
           [disabled]="state?.ingredients[ingredient] == 0"
         >
-          -
+          Less
         </button>
         <button class="btn btn-warning" (click)="addIngredient(ingredient)">
-          +
+          More
         </button>
       </div>
 
       <p class="order-btn">
         <button
           type="button"
-          class="btn btn-warning"
+          class="{{ isAuthenticated ? 'btn btn-success' : 'btn btn-info'}}"
           data-toggle="modal"
           data-target="#confirmOrderModal"
-          [disabled]="!state?.purchasable"
+          [disabled]="!isAuthenticated || !state?.purchasable"
         >
-          ORDER NOW
+          {{ isAuthenticated ? 'ORDER NOW' : 'SIGN IN TO ORDER'}}
         </button>
       </p>
     </div>

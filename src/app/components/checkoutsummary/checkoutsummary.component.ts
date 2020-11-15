@@ -1,6 +1,11 @@
 import { Location } from '@angular/common';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { OrderService } from '../orders/list/order.service';
+
+
 
 @Component({
   selector: 'app-checkoutsummary',
@@ -12,34 +17,21 @@ export class CheckoutsummaryComponent implements OnInit {
   @Input() state: any;
   @ViewChild('f', { static: false }) slForm: NgForm;
   public orderIngredients: any;
+  totalPrice: any;
+  user: any;
+  ingredients: any;
 
 
   constructor(
-    private location: Location
+    private location: Location,
+    private http: HttpClient,
+    private router: Router,
+    private orderService: OrderService
   ) { }
 
   ngOnInit(): void {
-    // console.log('morrrn', this.state.ingredients);
+    this.getOrderIngredients();
   }
-
-  // ngOnInit(): void {
-  //   this.state.ingredients = {
-  //     'salad': 0,
-  //     'tomato': 0,
-  //     'cheese': 0,
-  //     // "onion": 0,
-  //     'egg': 0
-  //   };
-  //   this.state.ingredientsPrice = {
-  //     salad: 0.5,
-  //     tomato: 0.3,
-  //     cheese: 0.6,
-  //     // onion: 0.4,
-  //     egg: 1.0
-  //   };
-
-  //   this.getOrderIngredients();
-  // }
 
   checkoutContinuedHandler() {
     this.open = true;
@@ -49,25 +41,27 @@ export class CheckoutsummaryComponent implements OnInit {
     this.location.back();
   }
 
-  // ngDoCheck(): void {
-  //   this.getOrderIngredients();
-  // }
 
-  // getOrderIngredients() {
-  //   this.orderIngredients = Object.keys( this.state.ingredients )
-  //   .map( ingredientName => {
-  //     let temp = [];
-  //     temp.push(ingredientName, this.state.ingredients[ingredientName]);
-  //     return temp;
-  //   } )
-  //  .filter(temp => temp[1] > 0);
-  // }
-  // // console.log('pushnanan', this.orderIngredients);
 
-  // Get value from output
-  // updateStateOutputCallback(event: any) {
-  //   this.state = event.state;
-  //   this.getAddedIngredients();
-  // }
+  getOrderIngredients() {
+    this.orderIngredients = JSON.parse(localStorage.getItem('data'));
+    this.totalPrice = JSON.parse(localStorage.getItem('price'));
+    this.ingredients = JSON.parse(localStorage.getItem('orderItem') || '[]');
+    const main1 = localStorage.getItem('userId');
+    this.user = main1.replace(/['"]+/g, '');
+    console.log(this.ingredients, 'onnnnnceeeeee');
+  }
 
+  onSubmit() {
+
+    this.orderService.saveOrder(this.totalPrice, this.ingredients, this.user).subscribe(
+      resData => {
+        console.log(resData, 'oreddrData');
+        this.router.navigate(['/orders']);
+      },
+      errorMessage => {
+        console.log(errorMessage);
+      }
+    );
+  }
 }

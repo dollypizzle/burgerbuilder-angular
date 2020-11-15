@@ -1,4 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { AuthService } from '../../login/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-controls',
@@ -9,18 +11,23 @@ export class ControlsComponent implements OnInit {
   @Input() state: any;
   @Output() updateStateOutputCallback: EventEmitter<any> = new EventEmitter<any>();
   controlsIngredients: any;
+  isAuthenticated = false;
+  private userSub: Subscription;
 
-  constructor() { }
+  constructor(
+    private authService: AuthService
+  ) { }
 
   ngOnInit(): void {
+    this.userSub = this.authService.user.subscribe(user => {
+      this.isAuthenticated = !!user;
+    });
     this.controlsIngredients = Object.keys( this.state.ingredients )
       .map( ingredientName => ingredientName )
       .reduce((prev, current) => {
           return prev.concat(current)
       }, []);
-    
-    console.log('this.controlsIngredients===');
-    console.log(this.controlsIngredients);
+
   }
 
   addIngredient(type) {
@@ -65,11 +72,8 @@ export class ControlsComponent implements OnInit {
           return sum + el;
       }, 0 );
     this.state.purchasable = sum > 0;
-    //Output
     this.updateStateOutputCallback.emit({'state': this.state});
-    console.log('updateStateOutputCallback (controls component)');
-    console.log(this.state);
   }
-  
+
 
 }

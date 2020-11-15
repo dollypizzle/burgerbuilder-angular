@@ -6,7 +6,7 @@
   border-radius: 20px;
 }
 
-.tomato {
+.meat {
   width: 80%;
   height: 5%;
   background: linear-gradient(#fc644d, #e34132);
@@ -29,10 +29,10 @@
   margin: 2% auto;
 }
 
-.egg {
+.bacon {
   width: 82%;
   height: 7%;
-  background: linear-gradient(#f6ce92, yellow); /*Egg*/
+  background: linear-gradient(#f6ce92, yellow); /*bacon*/
   border-radius: 10px;
   margin: 2% auto;
 }

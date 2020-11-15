@@ -22,7 +22,7 @@
           >
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/orders']" routerLinkActive="active">Orders</a>
+          <a class="nav-link" *ngIf="isAuthenticated" [routerLink]="['/orders']" routerLinkActive="active">Orders</a>
         </li>
         <li class="nav-item" *ngIf="isAuthenticated">
           <a class="nav-link" style="cursor: pointer;" (click)="onLogout()">Logout</a>
