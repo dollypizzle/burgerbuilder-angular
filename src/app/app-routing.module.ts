@@ -1,3 +1,4 @@
+import { AuthGuard } from './components/login/auth.guard';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
@@ -11,8 +12,8 @@ const routes: Routes = [
   { path: '', redirectTo: '/', pathMatch: 'full' },
   { path: '', component: BurgerComponent },
   { path: 'login', component: AuthComponent },
-  { path: 'orders', component: OrdersComponent },
-  { path: 'checkout', component: CheckoutsummaryComponent },
+  { path: 'orders', component: OrdersComponent, canActivate: [AuthGuard] },
+  { path: 'checkout', component: CheckoutsummaryComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({

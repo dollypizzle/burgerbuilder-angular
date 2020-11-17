@@ -5,23 +5,20 @@
         <div class="seeds"></div>
         <div class="seeds2"></div>
       </div>
-
-      <!-- <p *ngIf="addedIngredients.length === 0">Please start adding ingredients!</p> -->
       <app-burger-ingredient *ngFor="let ingredient of orderIngredients;" type="{{ingredient}}"></app-burger-ingredient>
-
       <div class="bread-bottom"></div>
     </div>
   </div>
-  <div class="camel">
+  <div class="checkoutButton">
     <button type="button" class="btn btn-danger mx-1" (click)="cancel()">
       Cancel
     </button>
     <button type="button" (click)="checkoutContinuedHandler()" class="btn btn-success mx-1">Continue</button>
   </div>
   <hr my-2 />
-  <div *ngIf="open" class="ContactData">
+  <div *ngIf="open" class="contactData">
     <h4>Enter your Contact Data</h4>
-    <form #f="ngForm">
+    <form #orderForm="ngForm">
       <div class="form-group">
         <input type="text" ngModel name="name" class="form-control" placeholder="Your Name" required/>
       </div>
@@ -35,7 +32,7 @@
         <input type="text" ngModel name="country" class="form-control" placeholder="Country" required/>
       </div>
       <div class="form-group">
-        <input type="text" ngModel name="email" class="form-control" placeholder="Your E-Mail" required/>
+        <input type="email" ngModel name="email" class="form-control" placeholder="Your E-Mail" required/>
       </div>
       <div class="form-group">
         <select class="form-control">
@@ -43,7 +40,7 @@
           <option>Fastest</option>
         </select>
       </div>
-      <button (click)="onSubmit()" class="my-3 btn-md" [disabled]="!f.valid">Order</button>
+      <button (click)="onSubmit()" class="my-3 btn-md" [disabled]="!orderForm.valid">Order</button>
     </form>
   </div>
 </div>

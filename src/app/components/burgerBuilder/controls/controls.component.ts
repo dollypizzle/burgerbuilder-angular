@@ -25,7 +25,7 @@ export class ControlsComponent implements OnInit {
     this.controlsIngredients = Object.keys( this.state.ingredients )
       .map( ingredientName => ingredientName )
       .reduce((prev, current) => {
-          return prev.concat(current)
+          return prev.concat(current);
       }, []);
 
   }
@@ -45,7 +45,7 @@ export class ControlsComponent implements OnInit {
     this.updatePurchaseState(updatedIngredients);
   }
 
-  removeIngredient ( type ) {
+  removeIngredient( type ) {
     const oldCount = this.state.ingredients[type];
     if ( oldCount <= 0 ) {
         return;
@@ -63,7 +63,7 @@ export class ControlsComponent implements OnInit {
     this.updatePurchaseState(updatedIngredients);
   }
 
-  updatePurchaseState (ingredients) {
+  updatePurchaseState(ingredients) {
     const sum = Object.keys( ingredients )
       .map( igKey => {
           return ingredients[igKey];
