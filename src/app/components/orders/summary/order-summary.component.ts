@@ -4,19 +4,19 @@ import { Component, OnInit, Input, OnChanges } from '@angular/core';
   selector: 'app-order-summary',
   templateUrl: './order-summary.component.html'
 })
-export class OrderSummaryComponent implements OnInit, OnChanges {
+export class OrderSummaryComponent implements OnInit {
   @Input() state: any;
   public ingredientSummary: any;
   constructor() { }
 
   ngOnInit(): void {
-    
+    console.log('morrrn', this.state.ingredientsPrice);
   }
 
-  ngOnChanges(changes) {
-    console.log('changes===');
-    console.log(changes);
-  }
+  // ngOnChanges(changes) {
+  //   console.log('changes===');
+  //   console.log(changes);
+  // }
 
   ngDoCheck() {
     this.showselectedIngredients();
@@ -30,6 +30,7 @@ export class OrderSummaryComponent implements OnInit, OnChanges {
         return temp;
     } )
     .filter(temp => temp[1] > 0);
+    console.log('oloooo', this.ingredientSummary);
   }
 
 }

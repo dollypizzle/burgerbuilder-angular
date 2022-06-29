@@ -9,8 +9,12 @@ import { ControlsComponent } from './components/burgerBuilder/controls/controls.
 import { FooterComponent } from './components/footer/footer.component';
 import { OrderSummaryComponent } from './components/orders/summary/order-summary.component';
 import { AppRoutingModule } from './app-routing.module';
-import { LoginComponent } from './components/login/login.component';
+import { AuthComponent } from './components/login/auth.component';
 import { OrdersComponent } from './components/orders/list/orders.component';
+import { SharedModule } from './shared/shared.module';
+import { HttpClientModule } from '@angular/common/http';
+import { CheckoutsummaryComponent } from './components/checkoutsummary/checkoutsummary.component';
+import { ContactdataComponent } from './components/checkoutsummary/contactdata/contactdata.component';
 
 @NgModule({
   declarations: [
@@ -21,12 +25,16 @@ import { OrdersComponent } from './components/orders/list/orders.component';
     ControlsComponent,
     OrderSummaryComponent,
     OrdersComponent,
-    LoginComponent,
-    FooterComponent
+    AuthComponent,
+    FooterComponent,
+    CheckoutsummaryComponent,
+    ContactdataComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SharedModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

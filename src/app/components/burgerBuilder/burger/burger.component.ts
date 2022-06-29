@@ -6,11 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./burger.component.css']
 })
 export class BurgerComponent implements OnInit {
-  
+
   state: any = {
     ingredients: null,
     ingredientsPrice: null,
-    totalPrice: 2,
+    totalPrice: 4,
     purchasable: false
   };
   addedIngredients: any;
@@ -19,17 +19,15 @@ export class BurgerComponent implements OnInit {
 
   ngOnInit(): void {
     this.state.ingredients = {
-      "salad": 0,
-      "tomato": 0,
-      "cheese": 0,
-      //"onion": 0,
-      "egg": 0
+      salad: 0,
+      tomato: 0,
+      cheese: 0,
+      egg: 0
     };
     this.state.ingredientsPrice = {
       salad: 0.5,
       tomato: 0.3,
       cheese: 0.6,
-      //onion: 0.4,
       egg: 1.0
     };
 
@@ -44,11 +42,10 @@ export class BurgerComponent implements OnInit {
           } );
       } )
       .reduce((prev, current) => {
-          return prev.concat(current)
+          return prev.concat(current);
       }, []);
   }
 
-  //Get value from output
   updateStateOutputCallback(event: any) {
     this.state = event.state;
     this.getAddedIngredients();
