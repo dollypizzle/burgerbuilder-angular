@@ -1,6 +1,17 @@
 <div>
-  <!-- <app-burger></app-burger> -->
-  <app-burger-ingredient></app-burger-ingredient>
+  <div class="">
+    <div class="box">
+      <div class="bread-top">
+        <div class="seeds"></div>
+        <div class="seeds2"></div>
+      </div>
+
+      <!-- <p *ngIf="addedIngredients.length === 0">Please start adding ingredients!</p> -->
+      <app-burger-ingredient *ngFor="let ingredient of orderIngredients;" type="{{ingredient}}"></app-burger-ingredient>
+
+      <div class="bread-bottom"></div>
+    </div>
+  </div>
   <div class="camel">
     <button type="button" class="btn btn-danger mx-1" (click)="cancel()">
       Cancel
@@ -32,7 +43,7 @@
           <option>Fastest</option>
         </select>
       </div>
-      <button class="my-3 btn-md" [disabled]="!f.valid">Order</button>
+      <button (click)="onSubmit()" class="my-3 btn-md" [disabled]="!f.valid">Order</button>
     </form>
   </div>
 </div>

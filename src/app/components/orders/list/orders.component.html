@@ -1,2 +1,12 @@
-<app-header></app-header>
-<p>orders works!</p>
+<div class="main" *ngFor="let order of orders">
+  <div class="order">
+    <p>Ingredients:</p>
+  <div class="span" *ngFor="let ingredients of objectValues(order.ingredients)">
+    <div>
+      <span>{{ ingredients[0] }}</span>
+      <span>({{ ingredients[1] }})</span>
+    </div>
+  </div>
+  </div>
+  <p class="mt-2" >Price: <strong>USD {{ order.price.toFixed(2) }}</strong></p>
+</div>

@@ -15,20 +15,21 @@ export class BurgerComponent implements OnInit {
   };
   addedIngredients: any;
 
-  constructor() { }
+  constructor() {
+   }
 
   ngOnInit(): void {
     this.state.ingredients = {
       salad: 0,
-      tomato: 0,
+      meat: 0,
       cheese: 0,
-      egg: 0
+      bacon: 0
     };
     this.state.ingredientsPrice = {
       salad: 0.5,
-      tomato: 0.3,
+      meat: 0.3,
       cheese: 0.6,
-      egg: 1.0
+      bacon: 1.0
     };
 
     this.getAddedIngredients();
@@ -40,11 +41,12 @@ export class BurgerComponent implements OnInit {
           return [...Array( this.state.ingredients[ingredientName] )].map( ( v, i ) => {
               return ingredientName;
           } );
-      } )
-      .reduce((prev, current) => {
+        } )
+        .reduce((prev, current) => {
           return prev.concat(current);
-      }, []);
-  }
+        }, []);
+        localStorage.setItem('data', JSON.stringify(this.addedIngredients));
+      }
 
   updateStateOutputCallback(event: any) {
     this.state = event.state;

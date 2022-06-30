@@ -10,16 +10,11 @@ export class OrderSummaryComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log('morrrn', this.state.ingredientsPrice);
   }
-
-  // ngOnChanges(changes) {
-  //   console.log('changes===');
-  //   console.log(changes);
-  // }
 
   ngDoCheck() {
     this.showselectedIngredients();
+    localStorage.setItem('orderItem', JSON.stringify(this.ingredientSummary));
   }
 
   showselectedIngredients() {
@@ -30,7 +25,7 @@ export class OrderSummaryComponent implements OnInit {
         return temp;
     } )
     .filter(temp => temp[1] > 0);
-    console.log('oloooo', this.ingredientSummary);
+    localStorage.setItem('price', this.state.totalPrice);
   }
 
 }

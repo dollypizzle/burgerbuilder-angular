@@ -6,7 +6,6 @@ import { BurgerComponent } from './components/burgerBuilder/burger/burger.compon
 import { OrdersComponent } from './components/orders/list/orders.component';
 import { AuthComponent } from './components/login/auth.component';
 import { CheckoutsummaryComponent } from './components/checkoutsummary/checkoutsummary.component';
-import { ContactdataComponent } from './components/checkoutsummary/contactdata/contactdata.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/', pathMatch: 'full' },
@@ -14,7 +13,6 @@ const routes: Routes = [
   { path: 'login', component: AuthComponent },
   { path: 'orders', component: OrdersComponent },
   { path: 'checkout', component: CheckoutsummaryComponent },
-  { path: 'contact', component: ContactdataComponent }
 ];
 
 @NgModule({

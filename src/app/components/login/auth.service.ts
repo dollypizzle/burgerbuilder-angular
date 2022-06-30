@@ -125,6 +125,8 @@ export class AuthService {
     this.user.next(user);
     this.autoLogout(expiresIn * 1000);
     localStorage.setItem('userData', JSON.stringify(user));
+    localStorage.setItem('token', JSON.stringify(user.token));
+    localStorage.setItem('userId', JSON.stringify(user.id));
   }
 
   private handleError(errorRes: HttpErrorResponse) {
