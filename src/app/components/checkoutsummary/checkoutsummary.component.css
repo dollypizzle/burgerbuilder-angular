@@ -1,4 +1,4 @@
-.ContactData {
+.contactData {
   margin: 20px auto;
   width: 80%;
   text-align: center;
@@ -9,12 +9,12 @@
 }
 
 @media (min-width: 600px) {
-  .ContactData {
+  .contactData {
       width: 500px;
   }
 }
 
-.camel {
+.checkoutButton {
   margin: auto;
   overflow-y: auto;
   text-align: center;
