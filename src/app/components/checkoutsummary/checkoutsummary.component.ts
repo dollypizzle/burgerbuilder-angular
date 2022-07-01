@@ -42,7 +42,7 @@ export class CheckoutsummaryComponent implements OnInit {
 
 
   getOrderIngredients() {
-    this.orderIngredients = JSON.parse(localStorage.getItem('data'));
+    this.orderIngredients = JSON.parse(localStorage.getItem('orderData'));
     this.totalPrice = JSON.parse(localStorage.getItem('price'));
     this.ingredients = JSON.parse(localStorage.getItem('orderItem') || '[]');
     const userId = localStorage.getItem('userId');
@@ -54,6 +54,10 @@ export class CheckoutsummaryComponent implements OnInit {
     this.orderService.saveOrder(this.totalPrice, this.ingredients, this.user).subscribe(
       response => {
         this.router.navigate(['/orders']);
+        localStorage.removeItem('orderData');
+        localStorage.removeItem('price');
+        localStorage.removeItem('data');
+        localStorage.removeItem('orderItem');
       },
       errorMessage => {
         console.log(errorMessage);
